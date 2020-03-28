@@ -1,0 +1,15 @@
+.rolls-table {
+  display: flex;
+  flex-direction: column;
+
+  &__header-item,
+  &__body-item {
+    padding: 0 5px;
+    width: 120px;
+  }
+
+  &__header,
+  &__body {
+    display: flex;
+  }
+}
