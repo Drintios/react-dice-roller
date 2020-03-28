@@ -18,7 +18,7 @@ export const fetchRollsStartAsync = () => {
   return dispatch => {
     dispatch(fetchRollsStart());
 
-    fetch("//134.209.42.95/api/get-rolls")
+    fetch("http://134.209.42.95/api/get-rolls")
       .then(response => response.json())
       .then(users => {
         dispatch(fetchRollsSuccess(users));

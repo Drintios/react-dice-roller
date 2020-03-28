@@ -29,7 +29,7 @@ const NewRoll = () => {
       redirect: "follow"
     };
 
-    fetch("//134.209.42.95/api/new-roll", requestOptions)
+    fetch("http://134.209.42.95/api/new-roll", requestOptions)
       .then(response => response.text())
       .then(result => {
         console.log(result);
