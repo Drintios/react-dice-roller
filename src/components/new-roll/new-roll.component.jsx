@@ -14,8 +14,32 @@ const NewRoll = () => {
     });
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    const newRollStringify = JSON.stringify(newRoll);
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+      method: "POST",
+      mode: "cors",
+      headers: myHeaders,
+      body: newRollStringify,
+      redirect: "follow"
+    };
+
+    fetch("http://134.209.42.95/api/new-roll", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result);
+        setNewRoll({ playerName: "", rollType: "" });
+      })
+      .catch(error => console.log(error));
+  };
+
   return (
-    <div className="new-roll">
+    <div className="new-roll" onSubmit={handleSubmit}>
       <form className="new-roll__form">
         <div className="new-roll__input-wrapper">
           <label>Player name</label>

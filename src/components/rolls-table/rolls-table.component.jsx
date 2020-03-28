@@ -11,11 +11,7 @@ import {
 
 import "./rolls-table.styles.scss";
 
-import { ROLL_DATA } from "../../data/roll-data-default";
-
 const RollsTable = ({ fetchRollsStartAsync, rolls, isLoaded }) => {
-  const rollData = ROLL_DATA;
-
   useEffect(() => {
     fetchRollsStartAsync();
 
@@ -31,35 +27,32 @@ const RollsTable = ({ fetchRollsStartAsync, rolls, isLoaded }) => {
     });
   }, [fetchRollsStartAsync]);
 
-  return (
-    <div className="rolls-table">
-      <div className="rolls-table__header">
-        <div className="rolls-table__header-item">Player name</div>
-        <div className="rolls-table__header-item">Roll type</div>
-        <div className="rolls-table__header-item">Roll result</div>
-        <div className="rolls-table__header-item">Time rolled</div>
-      </div>
-      {!isLoaded
-        ? rollData.map(
-            ({ id, playerName, rollSize, rollResult, timeRolled }) => (
-              <div className="rolls-table__body" key={id}>
-                <div className="rolls-table__body-item">{playerName}</div>
-                <div className="rolls-table__body-item">{rollSize}</div>
-                <div className="rolls-table__body-item">{rollResult}</div>
-                <div className="rolls-table__body-item">{timeRolled}</div>
-              </div>
-            )
-          )
-        : rolls.map(({ id, name, email, phone, username }) => (
+  if (isLoaded) {
+    return (
+      <div className="rolls-table">
+        <div className="rolls-table__header">
+          <div className="rolls-table__header-item">Player name</div>
+          <div className="rolls-table__header-item">Roll type</div>
+          <div className="rolls-table__header-item">Roll result</div>
+          <div className="rolls-table__header-item">Time rolled</div>
+        </div>
+        {rolls.data.map(
+          ({ id, player_name, roll_type, roll_result, created_at }) => (
             <div className="rolls-table__body" key={id}>
-              <div className="rolls-table__body-item">{name}</div>
-              <div className="rolls-table__body-item">{email}</div>
-              <div className="rolls-table__body-item">{phone}</div>
-              <div className="rolls-table__body-item">{username}</div>
+              <div className="rolls-table__body-item">{player_name}</div>
+              <div className="rolls-table__body-item">{roll_type}</div>
+              <div className="rolls-table__body-item">
+                {roll_result.map(result => `${result}, `)}
+              </div>
+              <div className="rolls-table__body-item">{created_at}</div>
             </div>
-          ))}
-    </div>
-  );
+          )
+        )}
+      </div>
+    );
+  } else {
+    return <div className="rolls-table">Loading...</div>;
+  }
 };
 
 const mapStateToPorps = createStructuredSelector({
