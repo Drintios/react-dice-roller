@@ -1,0 +1,7 @@
+const RollsActionTypes = {
+  FETCH_ROLLS_START: "FETCH_ROLLS_START",
+  FETCH_ROLLS_SUCCESS: "FETCH_ROLLS_SUCCESS",
+  FETCH_ROLLS_FAILURE: "FETCH_ROLLS_FAILURE"
+};
+
+export default RollsActionTypes;

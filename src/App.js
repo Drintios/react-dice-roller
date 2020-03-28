@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import RollsTable from './components/rolls-table/rolls-table.component';
-import NewRoll from './components/new-roll/new-roll.component';
+import RollsTable from "./components/rolls-table/rolls-table.component";
+import NewRoll from "./components/new-roll/new-roll.component";
 
-import './App.scss';
+import "./App.scss";
 
 const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        Dice roller
-      </header>
+      <header className="app-header">Dice roller</header>
       <RollsTable />
       <NewRoll />
     </div>
   );
-}
+};
 
 export default App;

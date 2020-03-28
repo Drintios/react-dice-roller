@@ -1,32 +1,46 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
+
+import "./new-roll.styles.scss";
 
 const NewRoll = () => {
-  const [newRoll, setNewRoll] = useState({playerName: '', rollSize: ''});
+  const [newRoll, setNewRoll] = useState({ playerName: "", rollType: "" });
 
-  const handleChange = ({target}) => {
-    const {value, name} = target
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
 
     setNewRoll({
       ...newRoll,
       [name]: value
-    })
-  }
+    });
+  };
 
-  return(
+  return (
     <div className="new-roll">
       <form className="new-roll__form">
         <div className="new-roll__input-wrapper">
           <label>Player name</label>
-          <input type="text" placeholder="Player name" name="playerName" onChange={handleChange} />
+          <input
+            type="text"
+            placeholder="Player name"
+            name="playerName"
+            onChange={handleChange}
+          />
         </div>
         <div className="new-roll__input-wrapper">
-          <label>Roll Size</label>
-          <input type="text" placeholder="Roll size" name="rollSize" onChange={handleChange} />
+          <label>Roll type</label>
+          <input
+            type="text"
+            placeholder="Roll type"
+            name="rollType"
+            onChange={handleChange}
+          />
         </div>
-        <button className="new-roll__button" type="submit">Roll dice</button>
+        <button className="new-roll__button" type="submit">
+          Roll dice
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default NewRoll;
