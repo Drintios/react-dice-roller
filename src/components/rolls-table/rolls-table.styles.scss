@@ -3,15 +3,22 @@
   flex-direction: column;
   padding: 0 10px;
   margin: 20px 0;
+  width: 100vw;
 
   &__header-item,
   &__body-item {
     padding: 0 5px;
-    width: 200px;
+    width: 25%;
   }
 
   &__header,
   &__body {
     display: flex;
+    border-bottom: 1px solid grey;
+    padding: 5px 0;
+  }
+
+  &__header {
+    font-weight: 500;
   }
 }

@@ -4,6 +4,7 @@ import "./new-roll.styles.scss";
 
 const NewRoll = () => {
   const [newRoll, setNewRoll] = useState({ playerName: "", rollType: "" });
+  const { playerName, rollType } = newRoll;
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -16,6 +17,10 @@ const NewRoll = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    if (!playerName && !rollType) {
+      return;
+    }
 
     const newRollStringify = JSON.stringify(newRoll);
     const myHeaders = new Headers();
@@ -48,6 +53,7 @@ const NewRoll = () => {
             placeholder="Player name"
             name="playerName"
             onChange={handleChange}
+            value={playerName}
           />
         </div>
         <div className="new-roll__input-wrapper">
@@ -57,6 +63,7 @@ const NewRoll = () => {
             placeholder="Roll type"
             name="rollType"
             onChange={handleChange}
+            value={rollType}
           />
         </div>
         <button className="new-roll__button" type="submit">
