@@ -51,7 +51,7 @@ const RollsTable = ({ fetchRollsStartAsync, rolls, isLoaded }) => {
       </div>
     );
   } else {
-    return <div className="rolls-table">Loading...</div>;
+    return <div className="rolls-table">Loading... (if it takes too long please visit <a href="//134.209.42.95/api/get-rolls">this page</a> and accept the security risk)</div>;
   }
 };
 
