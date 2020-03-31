@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
+import { pushRollStartAsync } from '../../redux/rolls/rolls.actions';
 
 import "./new-roll.styles.scss";
 
-const NewRoll = () => {
+const NewRoll = ({pushRollStartAsync}) => {
   const [newRoll, setNewRoll] = useState({ playerName: "", rollType: "" });
   const { playerName, rollType } = newRoll;
+  const [error, setError] = useState(null)
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -18,33 +22,23 @@ const NewRoll = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!playerName && !rollType) {
+    if (!playerName || !rollType) {
+      setError('Both inputs must be filled to create a new roll');
       return;
     }
 
-    const newRollStringify = JSON.stringify(newRoll);
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const requestOptions = {
-      method: "POST",
-      mode: "cors",
-      headers: myHeaders,
-      body: newRollStringify,
-      redirect: "follow"
-    };
-
-    fetch("//134.209.42.95/api/new-roll", requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        console.log(result);
-        setNewRoll({ playerName: "", rollType: "" });
-      })
-      .catch(error => console.log(error));
+    pushRollStartAsync(newRoll);
+    setNewRoll({ playerName, rollType: "" });
+    setError(null);
   };
 
   return (
     <div className="new-roll" onSubmit={handleSubmit}>
+      {
+        error
+        ? (<div className="new-roll__error">Error: {error}</div>)
+        : ''
+      }
       <form className="new-roll__form">
         <div className="new-roll__input-wrapper">
           <label>Player name</label>
@@ -74,4 +68,8 @@ const NewRoll = () => {
   );
 };
 
-export default NewRoll;
+const mapDispatchToProps = dispatch => ({
+  pushRollStartAsync: newRoll => dispatch(pushRollStartAsync(newRoll))
+})
+
+export default connect(null, mapDispatchToProps)(NewRoll);

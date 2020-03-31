@@ -5,6 +5,20 @@
   margin: 20px 0;
   width: 100vw;
 
+  &__today-filter {
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 6px;
+    border: none;
+    appearance: none;
+    background-color: #5f4bb6;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
   &__header-item,
   &__body-item {
     padding: 0 5px;
