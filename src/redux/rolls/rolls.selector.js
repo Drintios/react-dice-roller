@@ -11,9 +11,9 @@ export const selectRollsOfToday = createSelector([selectRoll], roll => {
       const dateOfToday = new Date();
 
       return (
-        dateCreatedAt.getDate() === dateOfToday.getDate() &&
-        dateCreatedAt.getMonth() === dateOfToday.getMonth() &&
-        dateCreatedAt.getFullYear() === dateOfToday.getFullYear()
+        dateCreatedAt.getDate() >= dateOfToday.getDate() &&
+        dateCreatedAt.getMonth() >= dateOfToday.getMonth() &&
+        dateCreatedAt.getFullYear() >= dateOfToday.getFullYear()
       );
     });
   } else {
